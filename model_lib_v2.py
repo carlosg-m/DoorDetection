@@ -450,7 +450,7 @@ def train_loop(
     use_tpu=False,
     save_final_config=False,
     checkpoint_every_n=1000,
-    checkpoint_max_to_keep=7,
+    checkpoint_max_to_keep=24, # HA: CHANGED 7 TO 24
     record_summaries=True,
     performance_summary_exporter=None,
     num_steps_per_iteration=NUM_STEPS_PER_ITERATION,
@@ -1133,6 +1133,7 @@ def eval_continuously(
   optimizer, _ = optimizer_builder.build(
       configs['train_config'].optimizer, global_step=global_step)
 
+  # HA: CHANGED FOR CYCLE
   #for latest_checkpoint in tf.train.checkpoints_iterator(
   #    checkpoint_dir, timeout=timeout, min_interval_secs=wait_interval):
   for latest_checkpoint in natural_sort(list(set(map(lambda n: n[:n.index(".")], glob.glob(f"{checkpoint_dir}/ckpt-*.*"))))):
