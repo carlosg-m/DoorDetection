@@ -450,7 +450,7 @@ def train_loop(
     use_tpu=False,
     save_final_config=False,
     checkpoint_every_n=1000,
-    checkpoint_max_to_keep=24, # HA: CHANGED 7 TO 24
+    checkpoint_max_to_keep=2, # HA: CHANGED 7 TO 24
     record_summaries=True,
     performance_summary_exporter=None,
     num_steps_per_iteration=NUM_STEPS_PER_ITERATION,
